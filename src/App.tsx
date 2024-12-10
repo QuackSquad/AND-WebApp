@@ -1,16 +1,26 @@
-import {  } from 'react'
-import './App.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import pageList from "./pages/pagesList";
+import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
-import NavBar from "./components/NavBar/NavBar";
+import NewPage from "./pages/NewPage";
 
 function App() {
-
-  return (
-    <>
-      <NavBar/>
-      <Home/>
-    </>
-  )
+    return (
+        <>
+            <NavBar pages={pageList} title="AND" />
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" /*element={<Layout />}*/>
+                        {pageList.map(({ path, component }) => (
+                            <Route path={path} element={component()} />
+                        ))}
+                        <Route path="" element={<Home />} />
+                        <Route path="new_page" element={<NewPage />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </>
+    );
 }
 
-export default App
+export default App;
