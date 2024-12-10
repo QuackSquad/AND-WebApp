@@ -15,10 +15,11 @@ function NavBar({ title, pages }: NavBarProps) {
     const [hamburgerAnimation, setHamburgerAnimation] = useState(false);
 
     return (
-        <nav className="navbar bg-body-tertiary fixed-top navbar-expand-lg">
+        // NavBar breakpoint setting: -sm|-md|-lg|-xl|-xxl
+        <nav className="navbar bg-body-tertiary fixed-top navbar-expand-md">
             <div className="container-fluid">
                 {/* Title */}
-                <a className="navbar-brand" href="#">
+                <a className="navbar-brand" href="/">
                     {title}
                 </a>
                 {/* Hamburger menu button */}
