@@ -1,8 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import pageList from "./pages/pagesList";
 import NavBar from "./components/NavBar";
-import Home from "./pages/Home";
-import NewPage from "./pages/NewPage";
 
 function App() {
     return (
@@ -14,8 +12,6 @@ function App() {
                         {pageList.map(({ path, component }) => (
                             <Route path={path} element={component()} />
                         ))}
-                        <Route path="" element={<Home />} />
-                        <Route path="new_page" element={<NewPage />} />
                     </Route>
                 </Routes>
             </BrowserRouter>
