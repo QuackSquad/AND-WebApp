@@ -4,7 +4,7 @@ use crate::db::connection::AndDb;
 use crate::structures::default::DefaultResponse;
 use rocket::serde::json::Json;
 use rocket_cors::{AllowedOrigins, Cors, CorsOptions};
-use rocket_db_pools::{sqlx, Connection, Database};
+use rocket_db_pools::Connection;
 
 mod db;
 mod models;

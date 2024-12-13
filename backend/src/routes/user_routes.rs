@@ -3,12 +3,12 @@ use crate::models::user_schema::UsersTable;
 use crate::structures::default::DefaultResponse;
 use rocket::serde::json::Json;
 use rocket::{get, routes, Route};
-use rocket_db_pools::{sqlx, Connection, Database};
+use rocket_db_pools::{sqlx, Connection};
 use sqlx::Row;
 
 #[get("/user/<id>")]
 async fn read_user(mut db: Connection<AndDb>, id: i64) -> Option<Json<UsersTable>> {
-    let row = sqlx::query("SELECT username FROM public.\"User\" WHERE id = $1")
+    let row = sqlx::query("SELECT username FROM \"user\".\"Users\" WHERE id = $1")
         .bind(id)
         .fetch_one(&mut **db)
         .await;
@@ -31,7 +31,7 @@ async fn set_username(
     id: i64,
     set: &str,
 ) -> Option<Json<DefaultResponse>> {
-    let result = sqlx::query("UPDATE public.\"User\" SET username = $1 WHERE id = $2")
+    let result = sqlx::query("UPDATE \"user\".\"Users\" SET username = $1 WHERE id = $2")
         .bind(set)
         .bind(id)
         .execute(&mut **db)
