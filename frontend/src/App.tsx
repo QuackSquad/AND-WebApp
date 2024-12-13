@@ -12,7 +12,11 @@ function App() {
                 <Routes>
                     <Route path="/" /*element={<Layout />}*/>
                         {pageList.map(({ path, component }) => (
-                            <Route path={path} element={component()} />
+                            <Route
+                                path={path}
+                                element={component()}
+                                key={path}
+                            />
                         ))}
                         <Route
                             path={"/http_test1/:id"}

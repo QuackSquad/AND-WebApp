@@ -78,7 +78,7 @@ function NavBar({ title, pages }: NavBarProps) {
                     <div className="offcanvas-body">
                         <ul className="navbar-nav justify-content-start flex-grow-1 pe-3">
                             {pages.map(({ path, name, disabled }) => (
-                                <li className="nav-item">
+                                <li className="nav-item" key={name}>
                                     <a
                                         className={
                                             "nav-link " +
@@ -86,7 +86,6 @@ function NavBar({ title, pages }: NavBarProps) {
                                         }
                                         aria-current="page"
                                         href={path}
-                                        key={name}
                                     >
                                         {name}
                                     </a>
