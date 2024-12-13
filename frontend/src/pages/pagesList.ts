@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import Home from "./Home";
-import NewPage from "./NewPage";
+import HttpTest from "./HttpTest";
 
 interface PageProps {
     name: string;
@@ -11,7 +11,7 @@ interface PageProps {
 
 const pageList: PageProps[] = [
     { name: 'Home', path: '/', disabled: false,  component: Home },
-    { name: 'NewPage', path: '/new_page', disabled: false, component: NewPage },
+    { name: 'HTTP Test', path: "/http_test/:id", disabled: false, component: HttpTest },
 ];
 
 export default pageList;

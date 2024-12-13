@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import pageList from "./pages/pagesList";
 import NavBar from "./components/NavBar";
-import Home from "./pages/Home";
-import NewPage from "./pages/NewPage";
+
+import HttpTest from "./pages/HttpTest";
 
 function App() {
     return (
@@ -14,8 +14,10 @@ function App() {
                         {pageList.map(({ path, component }) => (
                             <Route path={path} element={component()} />
                         ))}
-                        <Route path="" element={<Home />} />
-                        <Route path="new_page" element={<NewPage />} />
+                        <Route
+                            path={"/http_test1/:id"}
+                            element={<HttpTest />}
+                        />
                     </Route>
                 </Routes>
             </BrowserRouter>
