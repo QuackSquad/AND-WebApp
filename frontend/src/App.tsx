@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import pageList from "./pages/pagesList";
 import NavBar from "./components/NavBar";
 
+import HttpTest from "./pages/HttpTest";
+
 function App() {
     return (
         <>
@@ -12,6 +14,10 @@ function App() {
                         {pageList.map(({ path, component }) => (
                             <Route path={path} element={component()} />
                         ))}
+                        <Route
+                            path={"/http_test1/:id"}
+                            element={<HttpTest />}
+                        />
                     </Route>
                 </Routes>
             </BrowserRouter>

@@ -11,7 +11,7 @@ interface PageProps {
 
 const pageList: PageProps[] = [
     { name: 'Home', path: '/', disabled: false,  component: Home },
-    { name: 'HTTP Test', path: '/http_test', disabled: false, component: HttpTest },
+    { name: 'HTTP Test', path: "/http_test/:id", disabled: false, component: HttpTest },
 ];
 
 export default pageList;
