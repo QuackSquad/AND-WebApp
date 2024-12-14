@@ -19,6 +19,7 @@ function Bootstrap() {
                     header="Modal"
                     onSubmit={() => setShowModal(false)}
                     onCancel={() => setShowModal(false)}
+                    onClose={() => setShowModal(false)}
                 >
                     Text...
                 </Modal>
