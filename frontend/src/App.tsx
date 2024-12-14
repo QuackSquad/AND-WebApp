@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import pageList from "./pages/pagesList";
 import NavBar from "./components/NavBar";
 
@@ -24,7 +24,15 @@ function App() {
                     </Route> */}
                     <Route path="/" element={<Home />} />
                     <Route path="/http_test/:id" element={<HttpTest />} />
+                    <Route
+                        path="/http_test"
+                        element={<Navigate to="/http_test/1" />}
+                    />
                     <Route path="/bootstrap/:tab" element={<Bootstrap />} />
+                    <Route
+                        path="/bootstrap"
+                        element={<Navigate to="/bootstrap/overview" />}
+                    />
                 </Routes>
             </BrowserRouter>
         </>
