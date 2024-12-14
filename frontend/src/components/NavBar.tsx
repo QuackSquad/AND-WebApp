@@ -1,11 +1,10 @@
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 
 interface NavBarProps {
     title: string;
     pages: {
         name: string;
         path: string;
-        component: () => ReactNode;
         disabled: boolean;
     }[];
 }
