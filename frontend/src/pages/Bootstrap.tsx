@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Button from "../components/Button";
 import Alert from "../components/Alert";
@@ -7,15 +7,33 @@ import ListGroup from "../components/ListGroup";
 import Modal from "../components/Modal";
 import Tabs from "../components/Tabs";
 import Pagination from "../components/Pagination";
+import Placeholder from "../components/Placeholder";
+import ProgressBar from "../components/ProgressBar";
 import "../App.css";
+import Spinner from "../components/spinner";
 
 function Bootstrap() {
     const [count, setCount] = useState(0);
     const [showResetAlert, setShowResetAlert] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [progress, setProgress] = useState(0);
+    const intervalRef = useRef<number | undefined>(undefined);
     const list = ["Item 1", "Item 2", "Item 3"];
     const { tab } = useParams();
     console.log(tab);
+
+    useEffect(() => {
+        const updateProgress = () => {
+            setProgress((prevProgress) => {
+                if (prevProgress >= 100) {
+                    clearInterval(intervalRef.current);
+                    return 100;
+                }
+                return prevProgress + 5;
+            });
+        };
+        intervalRef.current = setInterval(updateProgress, 500);
+    }, []);
 
     return (
         <>
@@ -90,6 +108,10 @@ function Bootstrap() {
                 type="symbol"
                 onSelectItem={(item) => console.log(item)}
             />
+            <ProgressBar progress={progress} showLabel={true} />
+            <Spinner />
+            <Placeholder />
+            <Placeholder length={50} animation="wave" />
         </>
     );
 }
