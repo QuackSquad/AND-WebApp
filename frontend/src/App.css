@@ -1,3 +1,7 @@
 body {
     margin: 60px 20px 20px 20px;
 }
+
+.no-select {
+    user-select: none;
+}
