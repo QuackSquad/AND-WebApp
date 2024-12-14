@@ -1,32 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface TabsProps {
-    items: string[];
-    onSelectItem: (item: string) => void;
+    items: { name: string; path: string }[];
+    selectedPath: string | undefined;
 }
 
-function Tabs({ items, onSelectItem }: TabsProps) {
-    const [selectedIndex, setSelectedIndex] = useState(-1);
+function Tabs({ items, selectedPath }: TabsProps) {
+    const [selectedIndex, setSelectedIndex] = useState(0);
+
+    useEffect(() => {
+        if (selectedPath) {
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].path == selectedPath) {
+                    console.log("Setting selected index to", i);
+                    setSelectedIndex(i);
+                    break;
+                }
+            }
+        }
+    }, [selectedPath, items]);
 
     return (
         <>
             <ul className="nav nav-tabs">
-                <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#">
-                        Active
-                    </a>
-                </li>
                 {items.map((item, index) => (
-                    <li
-                        className="nav-item"
-                        key={index}
-                        onClick={() => {
-                            if (onSelectItem) {
-                                setSelectedIndex(index);
-                                onSelectItem(item);
-                            }
-                        }}
-                    >
+                    <li className="nav-item" key={index}>
                         <a
                             className={
                                 selectedIndex === index
@@ -34,9 +32,10 @@ function Tabs({ items, onSelectItem }: TabsProps) {
                                     : "nav-link"
                             }
                             aria-current="page"
-                            href="#"
+                            href={item.path}
+                            onClick={() => setSelectedIndex(index)}
                         >
-                            {item}
+                            {item.name}
                         </a>
                     </li>
                 ))}

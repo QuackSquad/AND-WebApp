@@ -1,16 +1,21 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import Button from "../components/Button";
 import Alert from "../components/Alert";
 import DismissibleAlert from "../components/DismissibleAlert";
 import ListGroup from "../components/ListGroup";
-import "../App.css";
 import Modal from "../components/Modal";
+import Tabs from "../components/Tabs";
+import Pagination from "../components/Pagination";
+import "../App.css";
 
 function Bootstrap() {
     const [count, setCount] = useState(0);
     const [showResetAlert, setShowResetAlert] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const list = ["Item 1", "Item 2", "Item 3"];
+    const { tab } = useParams();
+    console.log(tab);
 
     return (
         <>
@@ -21,7 +26,10 @@ function Bootstrap() {
                     onCancel={() => setShowModal(false)}
                     onClose={() => setShowModal(false)}
                 >
-                    Text...
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo
+                    quia incidunt ipsum animi repellendus, laboriosam fugit ea
+                    ducimus porro fuga, deserunt delectus adipisci. Dolore neque
+                    ipsam laudantium aut, officia tempore!
                 </Modal>
             )}
             <h1>Bootstrap</h1>
@@ -64,6 +72,24 @@ function Bootstrap() {
             )}
             <ListGroup items={list}></ListGroup>
             <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+            <Tabs
+                items={[
+                    { name: "Overview", path: "overview" },
+                    { name: "Tab 1", path: "1" },
+                    { name: "Tab 2", path: "2" },
+                ]}
+                selectedPath={tab}
+            />
+            {tab === "overview" && <p>Overview</p>}
+            {tab === "1" && <p>Tab 1</p>}
+            {tab === "2" && <p>Tab 2</p>}
+            {!["overview", "1", "2"].includes(tab || "") && <p>Not found</p>}
+            <Pagination pages={5} onSelectItem={(item) => console.log(item)} />
+            <Pagination
+                pages={10}
+                type="symbol"
+                onSelectItem={(item) => console.log(item)}
+            />
         </>
     );
 }
