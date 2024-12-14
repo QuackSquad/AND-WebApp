@@ -1,8 +1,11 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import pageList from "./pages/pagesList";
 import NavBar from "./components/NavBar";
 
+// Pages
+import Home from "./pages/Home";
 import HttpTest from "./pages/HttpTest";
+import Bootstrap from "./pages/Bootstrap";
 
 function App() {
     return (
@@ -10,15 +13,26 @@ function App() {
             <NavBar pages={pageList} title="AND" />
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" /*element={<Layout />}*/>
-                        {pageList.map(({ path, component }) => (
-                            <Route path={path} element={component()} />
+                    {/* <Route>
+                        {pageList.map(({ path, dynamicPath, component }) => (
+                            <Route
+                                path={path + (dynamicPath ? dynamicPath : "")}
+                                element={component()}
+                                key={path}
+                            />
                         ))}
-                        <Route
-                            path={"/http_test1/:id"}
-                            element={<HttpTest />}
-                        />
-                    </Route>
+                    </Route> */}
+                    <Route path="/" element={<Home />} />
+                    <Route path="/http_test/:id" element={<HttpTest />} />
+                    <Route
+                        path="/http_test"
+                        element={<Navigate to="/http_test/1" />}
+                    />
+                    <Route path="/bootstrap/:tab" element={<Bootstrap />} />
+                    <Route
+                        path="/bootstrap"
+                        element={<Navigate to="/bootstrap/overview" />}
+                    />
                 </Routes>
             </BrowserRouter>
         </>
