@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 interface SpinnerProps {
     type?:
         | "primary"
@@ -6,13 +8,23 @@ interface SpinnerProps {
         | "danger"
         | "warning"
         | "info"
+        | "default"
         | "light"
         | "dark";
 }
 
-const Spinner = ({ type = "dark" }: SpinnerProps) => {
+const Spinner = ({ type = "default" }: SpinnerProps) => {
+    const typeRef = useRef(type);
+
+    useEffect(() => {
+        if (typeRef.current === "default") {
+            const theme = localStorage.getItem("theme") || "dark";
+            typeRef.current = theme === "dark" ? "light" : "dark";
+        }
+    }, [type]);
+
     return (
-        <div className={"spinner-border text-" + type} role="status">
+        <div className={"spinner-border text-" + typeRef.current} role="status">
             <span className="visually-hidden">Loading...</span>
         </div>
     );

@@ -10,6 +10,7 @@ interface PlaceholderProps {
         | "danger"
         | "warning"
         | "info"
+        | "default"
         | "light"
         | "dark";
 }
@@ -17,9 +18,11 @@ interface PlaceholderProps {
 const Placeholder = ({
     length = 2,
     animation = "glow",
-    type = "dark",
+    type = "default",
 }: PlaceholderProps) => {
+    const typeRef = useRef(type);
     const animationClass = useRef<string>("");
+
     const blockLength = useMemo(() => {
         const blocks: number[] = [];
         if (length <= 2) {
@@ -43,7 +46,12 @@ const Placeholder = ({
         } else {
             animationClass.current = "";
         }
-    }, [animationClass, animation]);
+
+        if (type === "default") {
+            const theme = localStorage.getItem("theme") || "dark";
+            typeRef.current = theme === "dark" ? "light" : "dark";
+        }
+    }, [animationClass, animation, type]);
 
     return (
         <p className={animationClass.current}>
