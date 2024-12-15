@@ -1,11 +1,13 @@
-import { ReactNode, useState } from "react";
+import { useState } from "react";
+import BSTheme from "./BSTheme";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 interface NavBarProps {
     title: string;
     pages: {
         name: string;
         path: string;
-        component: () => ReactNode;
         disabled: boolean;
     }[];
 }
@@ -22,21 +24,6 @@ function NavBar({ title, pages }: NavBarProps) {
                 <a className="navbar-brand" href="/">
                     {title}
                 </a>
-                {/* Hamburger menu button */}
-                <button
-                    className="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNavbar"
-                    aria-controls="offcanvasNavbar"
-                    aria-label="Toggle navigation"
-                    onClick={() => {
-                        setHamburgerShown(true);
-                        setHamburgerAnimation(true);
-                    }}
-                >
-                    <span className="navbar-toggler-icon"></span>
-                </button>
                 {/* Hamburger menu */}
                 <div
                     className={
@@ -78,7 +65,7 @@ function NavBar({ title, pages }: NavBarProps) {
                     <div className="offcanvas-body">
                         <ul className="navbar-nav justify-content-start flex-grow-1 pe-3">
                             {pages.map(({ path, name, disabled }) => (
-                                <li className="nav-item">
+                                <li className="nav-item" key={name}>
                                     <a
                                         className={
                                             "nav-link " +
@@ -86,7 +73,6 @@ function NavBar({ title, pages }: NavBarProps) {
                                         }
                                         aria-current="page"
                                         href={path}
-                                        key={name}
                                     >
                                         {name}
                                     </a>
@@ -94,6 +80,20 @@ function NavBar({ title, pages }: NavBarProps) {
                             ))}
                         </ul>
                     </div>
+                </div>
+                {/* Theme button */}
+                <div className="justify-content-end">
+                    <BSTheme className="navbar-button" />
+                    {/* Hamburger menu button */}
+                    <button
+                        className="btn btn-outline-secondary btn-navbar-toggler navbar-button"
+                        onClick={() => {
+                            setHamburgerShown(true);
+                            setHamburgerAnimation(true);
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faBars} className="fa-lg" />
+                    </button>
                 </div>
                 {/* Hamburger menu backdrop */}
                 {hamburgerAnimation && (
