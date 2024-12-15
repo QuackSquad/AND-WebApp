@@ -11,6 +11,7 @@ Ensure you have the following installed:
 1. [Node.js](https://nodejs.org/) (Version 22 or higher recommended)
 2. [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
 3. [rustup](https://rustup.rs/)
+4. [PostgreSQL](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads) including pgAdmin
 
 ### Steps 1: **Clone the Repository**
 
@@ -45,7 +46,23 @@ Or with Yarn:
 yarn dev
 ```
 
-### Steps 4: **Install Backend Dependencies**
+### Steps 4: **Create Database and User**
+
+Create the database _AND-WebApp_ and the user \*AND-WebApp with all privileges
+
+```sql
+   CREATE DATABASE AND;
+
+   CREATE USER "AND-WebApp" WITH PASSWORD 'abcd1234';
+
+   GRANT ALL PRIVILEGES ON DATABASE "AND" TO "AND-WebApp";
+```
+
+### Steps 5: **Import tables**
+
+Import tables from backup: _backend/database/AND.sql_
+
+### Steps 6: **Install Backend Dependencies**
 
 Set rust to nightly version
 
@@ -54,19 +71,19 @@ cd ../backend
 rustup default nightly
 ```
 
-### Steps 5: **Build Backend**
+### Steps 7: **Build Backend**
 
 ```bash
 cargo build
 ```
 
-### Steps 6: **Run Backend locally**
+### Steps 8: **Run Backend locally**
 
 ```bash
 cargo run
 ```
 
-### Steps 7: Access the App
+### Steps 9: Access the App
 
 Open your browser and navigate to:\
 **http://localhost:5173**
