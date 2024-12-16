@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import HttpTest from "./pages/HttpTest";
 import Bootstrap from "./pages/Bootstrap";
+import Device from "./pages/Device";
 
 function App() {
     return (
@@ -32,6 +33,11 @@ function App() {
                     <Route
                         path="/bootstrap"
                         element={<Navigate to="/bootstrap/overview" />}
+                    />
+                    <Route path="/device/:id" element={<Device />} />
+                    <Route
+                        path="/device"
+                        element={<Navigate to="/device/overview" />}
                     />
                 </Routes>
             </BrowserRouter>

@@ -40,3 +40,13 @@ body {
 .navbar-button {
     margin-right: 10px;
 }
+
+.reset {
+    all: unset;
+}
+
+.reset-space {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
