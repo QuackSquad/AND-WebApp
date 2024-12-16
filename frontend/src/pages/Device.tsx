@@ -14,8 +14,6 @@ function Device() {
     const loadingTabs = [
         { name: "overview", path: "overview" },
         { name: "", path: "" },
-        { name: "", path: "" },
-        { name: "", path: "" },
     ];
 
     useEffect(() => {
@@ -64,7 +62,9 @@ function Device() {
                 items={loading ? loadingTabs : tabs}
                 selectedPath={currentTab}
             />
-            {currentTab === "overview" ? <Overview /> : <DeviceTab />}
+            <div className="container justify-content-center">
+                {currentTab === "overview" ? <Overview /> : <DeviceTab />}
+            </div>
         </>
     );
 }
