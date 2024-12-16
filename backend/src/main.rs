@@ -49,6 +49,7 @@ fn rocket() -> _ {
         .mount("/", routes![index])
         .mount("/hello", routes![hello])
         .mount("/", routes::user_routes::get_routes())
+        .mount("/", routes::device_routes::get_routes())
         .attach(AdHoc::on_liftoff("Liftoff Message", |_| {
             Box::pin(async {
                 println!("Rocket has launched!");
