@@ -1,6 +1,6 @@
 import { ReactNode, useState, useEffect } from "react";
 
-interface ButtonProps {
+interface ModalProps {
     header: string;
     children?: ReactNode;
     submitText?: string;
@@ -20,7 +20,24 @@ interface ButtonProps {
         | "dark";
 }
 
-function Button({
+/**
+ * A Modal component that displays a modal dialog with customizable header, body, and footer.
+ * The modal can be vertically centered and includes submit and cancel buttons with customizable text and actions.
+ *
+ * @param {Object} props - The properties object.
+ * @param {string} props.header - The header text of the modal.
+ * @param {React.ReactNode} props.children - The content to be displayed inside the modal body.
+ * @param {string} [props.submitText="Submit"] - The text for the submit button.
+ * @param {Function} props.onSubmit - The function to be called when the submit button is clicked.
+ * @param {string} [props.cancelText="Cancel"] - The text for the cancel button.
+ * @param {Function} props.onCancel - The function to be called when the cancel button is clicked.
+ * @param {Function} [props.onClose=props.onCancel] - The function to be called when the modal is closed.
+ * @param {boolean} [props.verticalCenter=true] - Whether the modal should be vertically centered.
+ * @param {string} [props.submitType="primary"] - The Bootstrap class type for the submit button.
+ *
+ * @returns {JSX.Element} The rendered Modal component.
+ */
+function Modal({
     header,
     children,
     submitText = "Submit",
@@ -30,7 +47,7 @@ function Button({
     onClose = onCancel,
     verticalCenter = true,
     submitType = "primary",
-}: ButtonProps) {
+}: ModalProps) {
     const [showModal, setShowModal] = useState(false);
     const [first, setFirst] = useState(true);
     const animationDelay = 300;
@@ -52,7 +69,6 @@ function Button({
                     setShowModal(false);
                     setTimeout(() => {
                         onClose();
-                        console.log("onClose");
                     }, animationDelay);
                 }}
             >
@@ -64,6 +80,7 @@ function Button({
                     onClick={(e) => e.stopPropagation()}
                 >
                     <div className="modal-content">
+                        {/* Modal header with title and close button */}
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id="modalLabel">
                                 {header}
@@ -77,12 +94,13 @@ function Button({
                                     setShowModal(false);
                                     setTimeout(() => {
                                         onClose();
-                                        console.log("onClose");
                                     }, animationDelay);
                                 }}
                             ></button>
                         </div>
+                        {/* Modal body with content */}
                         <div className="modal-body">{children}</div>
+                        {/* Modal footer with buttons */}
                         <div className="modal-footer">
                             <button
                                 type="button"
@@ -92,7 +110,6 @@ function Button({
                                     setShowModal(false);
                                     setTimeout(() => {
                                         onCancel();
-                                        console.log("onCancel");
                                     }, animationDelay);
                                 }}
                             >
@@ -105,7 +122,6 @@ function Button({
                                     setShowModal(false);
                                     setTimeout(() => {
                                         onSubmit();
-                                        console.log("onSubmit");
                                     }, animationDelay);
                                 }}
                             >
@@ -115,6 +131,7 @@ function Button({
                     </div>
                 </div>
             </div>
+            {/* Modal backdrop */}
             <div
                 className={"modal-backdrop fade" + (showModal ? " show" : "")}
             ></div>
@@ -122,4 +139,4 @@ function Button({
     );
 }
 
-export default Button;
+export default Modal;

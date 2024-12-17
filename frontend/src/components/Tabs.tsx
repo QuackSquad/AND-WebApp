@@ -5,9 +5,28 @@ interface TabsProps {
     selectedPath: string | undefined;
 }
 
+/**
+ * A functional component that renders a set of tabs.
+ *
+ * @param {TabsProps} props - The properties object.
+ * @param {Array<{ name: string, path: string }>} props.items - An array of tab items, each containing a name and a path.
+ * @param {string} props.selectedPath - The path of the currently selected tab.
+ *
+ * @returns {JSX.Element} The rendered tabs component.
+ *
+ * @example
+ * const items = [
+ *   { name: 'Tab 1', path: '/tab1' },
+ *   { name: 'Tab 2', path: '/tab2' },
+ * ];
+ * const selectedPath = '/tab1';
+ *
+ * <Tabs items={items} selectedPath={selectedPath} />
+ */
 function Tabs({ items, selectedPath }: TabsProps) {
     const [selectedIndex, setSelectedIndex] = useState(0);
 
+    // Set the selected index based on the selected path
     useEffect(() => {
         if (selectedPath) {
             for (let i = 0; i < items.length; i++) {
@@ -22,6 +41,7 @@ function Tabs({ items, selectedPath }: TabsProps) {
     return (
         <>
             <ul className="nav nav-tabs">
+                {/* Render each tab item */}
                 {items.map((item, index) => (
                     <li className="nav-item" key={index}>
                         <a

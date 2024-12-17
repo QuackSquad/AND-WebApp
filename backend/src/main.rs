@@ -14,11 +14,13 @@ mod structures;
 use db::connection::init_db;
 use rocket::fairing::AdHoc;
 
+// Default route
 #[get("/")]
 async fn index(_db: Connection<AndDb>) -> &'static str {
     "Successfully connected to PostgreSQL database 'AND'!"
 }
 
+// Return a JSON response with the name provided in the URL, route
 #[get("/<name>")]
 fn hello(name: &str) -> Json<DefaultResponse> {
     Json(DefaultResponse {
@@ -41,6 +43,7 @@ fn create_cors() -> Cors {
     .expect("CORS configuration failed")
 }
 
+// Rocket configuration
 #[launch]
 fn rocket() -> _ {
     rocket::build()

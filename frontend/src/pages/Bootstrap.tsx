@@ -12,6 +12,10 @@ import ProgressBar from "../components/ProgressBar";
 import "../App.css";
 import Spinner from "../components/spinner";
 
+/**
+ * Site showing Bootstrap components
+ * @returns Bootstrap page
+ */
 function Bootstrap() {
     const [count, setCount] = useState(0);
     const [showResetAlert, setShowResetAlert] = useState(false);

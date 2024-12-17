@@ -14,6 +14,14 @@ interface DismissibleAlertProps {
     onDismiss: () => void;
 }
 
+/**
+ * A React component that renders a dismissible alert box.
+ *
+ * @param {React.ReactNode} children - The content to be displayed inside the alert box.
+ * @param {() => void} onDismiss - The callback function to be called when the alert is dismissed.
+ *
+ * @returns {JSX.Element} The rendered alert component.
+ */
 function DismissibleAlert({ children, onDismiss }: DismissibleAlertProps) {
     return (
         <div
