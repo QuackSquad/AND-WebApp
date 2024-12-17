@@ -7,6 +7,24 @@ import "../App.css";
 import Overview from "./DeviceTabs/Overview";
 import DeviceTab from "./DeviceTabs/Device";
 
+/**
+ * The `Device` component is responsible for rendering a set of tabs and the corresponding content
+ * based on the selected tab. It fetches device data from an API and stores it in session storage
+ * to avoid redundant network requests.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered component.
+ *
+ * @remarks
+ * - The component uses `useParams` to get the current tab ID from the URL.
+ * - It uses `useState` to manage the state of the tabs and the loading state.
+ * - The `useEffect` hook is used to fetch device data and update the state accordingly.
+ * - The `getDevices` function fetches device data from the API.
+ * - The component conditionally renders the `Tabs` component and either the `Overview` or `DeviceTab` component based on the selected tab.
+ *
+ * @function
+ * @name Device
+ */
 function Device() {
     const currentTab = useParams().id;
     const [tabs, setTabs] = useState<{ name: string; path: string }[]>([]);
@@ -16,6 +34,7 @@ function Device() {
         { name: "", path: "" },
     ];
 
+    // Fetch device data and store it in session storage
     useEffect(() => {
         const storedTabs = sessionStorage.getItem("Device-tabs");
 
@@ -26,6 +45,7 @@ function Device() {
             setLoading(true);
         }
 
+        // Fetch device data
         const fetchData = async () => {
             const devices = await getDevices();
 
@@ -45,6 +65,7 @@ function Device() {
         fetchData();
     }, []);
 
+    // Get device data from the API
     const getDevices = async () => {
         try {
             const response: AxiosResponse<DevicesTableProps[]> =
