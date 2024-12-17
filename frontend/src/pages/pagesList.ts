@@ -6,6 +6,7 @@ interface PageProps {
     disabled: boolean;
 }
 
+// List of pages to be displayed in the navbar
 const pageList: PageProps[] = [
     { name: 'Home', path: '/', disabled: false },
     { name: 'HTTP Test', path: '/http_test/', dynamicPath: ':id', disabled: false },

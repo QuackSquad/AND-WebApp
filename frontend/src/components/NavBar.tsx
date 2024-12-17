@@ -12,6 +12,24 @@ interface NavBarProps {
     }[];
 }
 
+/**
+ * NavBar component renders a responsive navigation bar with a title, pages, and a theme button.
+ * It includes a hamburger menu for smaller screens.
+ *
+ * @component
+ * @param {NavBarProps} props - The props for the NavBar component.
+ * @param {string} props.title - The title displayed in the navigation bar.
+ * @param {Array<{ path: string, name: string, disabled?: boolean }>} props.pages - The list of pages to display in the navigation bar.
+ *
+ * @example
+ * const pages = [
+ *   { path: '/home', name: 'Home' },
+ *   { path: '/about', name: 'About', disabled: true },
+ *   { path: '/contact', name: 'Contact' }
+ * ];
+ *
+ * <NavBar title="My Website" pages={pages} />
+ */
 function NavBar({ title, pages }: NavBarProps) {
     const [hamburgerShown, setHamburgerShown] = useState(false);
     const [hamburgerAnimation, setHamburgerAnimation] = useState(false);

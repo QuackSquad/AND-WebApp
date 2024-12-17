@@ -7,6 +7,17 @@ interface PaginationProps {
     type?: "text" | "symbol";
 }
 
+/**
+ * Pagination component for navigating through pages.
+ *
+ * @param {Object} props - The properties object.
+ * @param {number} props.pages - The total number of pages.
+ * @param {function} props.onSelectItem - Callback function to handle page selection.
+ * @param {number} [props.pagesToShow=5] - The number of pages to display in the pagination control.
+ * @param {string} props.type - The type of pagination labels ("symbol" for symbols or default for text).
+ *
+ * @returns {JSX.Element} The rendered pagination component.
+ */
 function Pagination({
     pages,
     onSelectItem,
@@ -39,6 +50,7 @@ function Pagination({
         let count = 0;
 
         for (let i = 0; i < pages; i++) {
+            // Calculate which pages to show
             if (
                 (i < selectedIndex - pagesToShow / 2 &&
                     selectedIndex < pages - pagesToShow / 2) ||
@@ -50,6 +62,7 @@ function Pagination({
             }
             count++;
 
+            // Add page item
             items.push(
                 <li key={i} className="page-item">
                     <a
@@ -75,6 +88,7 @@ function Pagination({
     return (
         <nav aria-label="Page navigation">
             <ul className="pagination justify-content-center">
+                {/* "First" button */}
                 {pages > pagesToShow && (
                     <li
                         className={
@@ -92,6 +106,7 @@ function Pagination({
                         </a>
                     </li>
                 )}
+                {/* "Previous" button */}
                 <li className={"page-item" + (firstIndex() ? " disabled" : "")}>
                     <a
                         className="page-link no-select"
@@ -103,7 +118,9 @@ function Pagination({
                         {labels[1]}
                     </a>
                 </li>
+                {/* Page items */}
                 {getItems()}
+                {/* "Next" button */}
                 <li className={"page-item " + (lastIndex() ? "disabled" : "")}>
                     <a
                         className="page-link no-select"
@@ -115,6 +132,7 @@ function Pagination({
                         {labels[2]}
                     </a>
                 </li>
+                {/* "Last" button */}
                 {pages > pagesToShow && (
                     <li
                         className={
