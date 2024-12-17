@@ -1,2 +1,2 @@
-[default.databases.and]
+[default.databases.and_db]
 url = "postgres://AND-WebApp:abcd1234@localhost:5432/AND"

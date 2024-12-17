@@ -31,7 +31,6 @@ function Tabs({ items, selectedPath }: TabsProps) {
         if (selectedPath) {
             for (let i = 0; i < items.length; i++) {
                 if (items[i].path == selectedPath) {
-                    console.log("Setting selected index to", i);
                     setSelectedIndex(i);
                     break;
                 }
@@ -49,13 +48,26 @@ function Tabs({ items, selectedPath }: TabsProps) {
                             className={
                                 selectedIndex === index
                                     ? "nav-link active"
-                                    : "nav-link"
+                                    : "nav-link" +
+                                      (item.name
+                                          ? ""
+                                          : " placeholder-wave active")
                             }
                             aria-current="page"
                             href={item.path}
                             onClick={() => setSelectedIndex(index)}
                         >
-                            {item.name}
+                            {item.name || (
+                                <p
+                                    className="reset-space placeholder"
+                                    style={{
+                                        display: "block",
+                                        color: "var(--bs-link-color)",
+                                    }}
+                                >
+                                    Loading...
+                                </p>
+                            )}
                         </a>
                     </li>
                 ))}
