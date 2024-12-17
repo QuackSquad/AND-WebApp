@@ -13,6 +13,10 @@ interface UserTableProps {
     username: string;
 }
 
+/**
+ * HTTP test page
+ * @returns HTTP test page
+ */
 function HttpTest() {
     const [username, setUsername] = useState<string>("");
     const [helloData, setHelloData] = useState<string>("");

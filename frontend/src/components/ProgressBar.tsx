@@ -14,6 +14,16 @@ interface ProgressBarProps {
         | "default";
 }
 
+/**
+ * ProgressBar component displays a progress bar with customizable properties.
+ *
+ * @param {number} progress - The current progress value (0-100).
+ * @param {number} [height=16] - The height of the progress bar in pixels.
+ * @param {boolean} [showLabel=false] - Whether to show the progress percentage as a label.
+ * @param {string} [type="default"] - The type of the progress bar, which determines its color.
+ *
+ * @returns {JSX.Element} The rendered progress bar component.
+ */
 const ProgressBar = ({
     progress,
     height = 16,
@@ -22,7 +32,7 @@ const ProgressBar = ({
 }: ProgressBarProps) => {
     return (
         <div
-            className="progress"
+            className="progress noselect"
             role="progressbar"
             style={{ height: height + "px" }}
         >

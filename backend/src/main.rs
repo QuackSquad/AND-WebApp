@@ -18,18 +18,20 @@ struct Response {
     status: String,
 }
 
-// User structure matching the database table
+// UserTable structure matching the database table
 #[derive(serde::Serialize)]
 struct UserTable {
     id: i64,
     username: String,
 }
 
+// Default route
 #[get("/")]
 async fn index(_db: Connection<AndDb>) -> &'static str {
     "Successfully connected to PostgreSQL database 'AND'!"
 }
 
+// Return a JSON response with the name provided in the URL, route
 #[get("/<name>")]
 fn hello(name: &str) -> Json<Response> {
     Json(Response {
@@ -38,6 +40,7 @@ fn hello(name: &str) -> Json<Response> {
     })
 }
 
+// Fetch a user by ID
 #[get("/<id>")]
 async fn read_user(mut db: Connection<AndDb>, id: i64) -> Option<Json<UserTable>> {
     let row = sqlx::query("SELECT username FROM public.\"User\" WHERE id = $1")
@@ -64,6 +67,7 @@ async fn read_user(mut db: Connection<AndDb>, id: i64) -> Option<Json<UserTable>
     }
 }
 
+// Set a username for a user by ID
 #[get("/username/<id>?<set>")]
 async fn set_username(mut db: Connection<AndDb>, id: i64, set: &str) -> Option<Json<Response>> {
     let result = sqlx::query("UPDATE public.\"User\" SET username = $1 WHERE id = $2")
@@ -87,7 +91,7 @@ async fn set_username(mut db: Connection<AndDb>, id: i64, set: &str) -> Option<J
     }
 }
 
-// CORS configuration
+// CORS configuration for cross-origin requests
 fn create_cors() -> Cors {
     CorsOptions {
         allowed_origins: AllowedOrigins::all(), // Allow all origins (can be restricted to a list of allowed origins)
@@ -101,6 +105,7 @@ fn create_cors() -> Cors {
     .expect("CORS configuration failed")
 }
 
+// Rocket configuration
 #[launch]
 fn rocket() -> _ {
     rocket::build()
