@@ -5,6 +5,7 @@ import {
     EventsTableProps,
 } from "../../components/DatabaseTableProps";
 import axios, { AxiosResponse } from "axios";
+import { width } from "@fortawesome/free-solid-svg-icons/fa0";
 
 function Overview() {
     const [devicesTable, setDeviceTable] = useState<string[][]>([]);
@@ -114,10 +115,8 @@ function Overview() {
                         width="-webkit-fill-available"
                         maxWidth="500px"
                     />
-                </div>
-                <div className="right-box d-flex justify-content-center align-items-center">
                     <ListCard
-                        title="Title"
+                        title="Events"
                         listHeaders={[
                             "Device",
                             "Type",
@@ -125,7 +124,15 @@ function Overview() {
                             "Timestamp",
                         ]}
                         list={eventTable}
-                        width="410px"
+                        width="-webkit-fill-available"
+                        maxWidth="500px"
+                    />
+                </div>
+                <div className="right-box d-flex justify-content-center align-items-center">
+                    <img
+                        src="/512image.jpg"
+                        alt="image"
+                        style={{ width: "100%" }}
                     />
                 </div>
             </div>

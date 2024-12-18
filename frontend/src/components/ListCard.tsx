@@ -7,6 +7,7 @@ interface ListCardProps {
     listHeaders: string[] | ReactNode[];
     list: string[][] | ReactNode[][];
     maxWidth?: string;
+    minWidth?: string;
 }
 
 /**
@@ -19,6 +20,7 @@ interface ListCardProps {
  * @param {string[]} props.listHeaders - The headers for the list table.
  * @param {Array<Array<string>>} props.list - The list data to be displayed in the table.
  * @param {string} [props.maxWidth="none"] - The maximum width of the card.
+ * @param {string} [props.minWidth="none"] - The minimum width of the card.
  *
  * @returns {JSX.Element} The rendered ListCard component.
  */
@@ -29,6 +31,7 @@ function ListCard({
     listHeaders,
     list,
     maxWidth = "none",
+    minWidth = "none",
 }: ListCardProps) {
     return (
         <div
@@ -38,6 +41,7 @@ function ListCard({
                 height: height,
                 padding: "0",
                 maxWidth: maxWidth,
+                minWidth: minWidth,
             }}
         >
             {/* Card title */}

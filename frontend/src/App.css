@@ -130,13 +130,12 @@ body {
 /* Device */
 .left-box {
     background-color: lightblue;
-    height: 450px;
-    width: 100%; /* Fylder hele bredden på mindre skærme */
+    max-width: 500px;
+    flex-direction: column;
 }
 
 .right-box {
     background-color: lightcoral;
-    height: 450px;
     width: 100%;
 }
 
