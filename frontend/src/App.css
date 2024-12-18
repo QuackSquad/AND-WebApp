@@ -149,9 +149,3 @@ body {
         flex-grow: 1;
     }
 }
-
-.left-box,
-.right-box {
-    text-align: center;
-    font-weight: bold;
-}
