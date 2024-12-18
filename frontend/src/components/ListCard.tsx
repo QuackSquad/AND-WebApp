@@ -61,8 +61,12 @@ function ListCard({
                     {/* Table headers */}
                     <thead>
                         <tr>
-                            {listHeaders.map((header) => (
-                                <th scope="col" className="text-center">
+                            {listHeaders.map((header, index) => (
+                                <th
+                                    scope="col"
+                                    className="text-center"
+                                    key={index}
+                                >
                                     {header}
                                 </th>
                             ))}
@@ -70,10 +74,10 @@ function ListCard({
                     </thead>
                     {/* Table data */}
                     <tbody>
-                        {list.map((row) => (
-                            <tr className="text-center">
-                                {row.map((cell) => (
-                                    <td>{cell}</td>
+                        {list.map((row, index) => (
+                            <tr className="text-center" key={index}>
+                                {row.map((cell, index) => (
+                                    <td key={index}>{cell}</td>
                                 ))}
                             </tr>
                         ))}
