@@ -129,13 +129,12 @@ body {
 
 /* Device */
 .left-box {
-    background-color: lightblue;
     max-width: 500px;
+    width: 100%;
     flex-direction: column;
 }
 
 .right-box {
-    background-color: lightcoral;
     width: 100%;
 }
 
@@ -147,4 +146,9 @@ body {
     .right-box {
         flex-grow: 1;
     }
+}
+
+.left-box,
+.right-box {
+    margin: 0 10px;
 }

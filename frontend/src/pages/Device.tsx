@@ -83,6 +83,7 @@ function Device() {
                 items={loading ? loadingTabs : tabs}
                 selectedPath={currentTab}
             />
+            <div style={{ height: "10px" }} />
             <div className="container justify-content-center">
                 {currentTab === "overview" ? <Overview /> : <DeviceTab />}
             </div>
