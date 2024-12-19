@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { GOOGLE_MAPS_API_KEY } from "../../config.json";
+import { GOOGLE_MAPS_API_KEY, GOOGLE_MAPS_MAP_ID } from "../../config.json";
 
 declare global {
     interface Window {
@@ -19,7 +19,7 @@ const pathCoordinates = [
     { lat: -27.467, lng: 153.027 },
 ];
 
-const FlightPathMap: React.FC = () => {
+const Map: React.FC = () => {
     const mapRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -45,19 +45,26 @@ const FlightPathMap: React.FC = () => {
             );
 
             // Wait for the google maps object to be available
-            const { Map, Marker, Polyline } = window.google.maps;
+            const { Map, Polyline } = window.google.maps;
+
+            // @ts-expect-error google is not defined
+            const { AdvancedMarkerElement } = (await google.maps.importLibrary(
+                "marker"
+                // @ts-expect-error Cannot find namespace 'google'
+            )) as google.maps.MarkerLibrary;
 
             // Create a new map object
             const map = new Map(mapRef.current, {
                 center: center,
                 zoom: 3,
+                mapId: GOOGLE_MAPS_MAP_ID,
             });
 
             // Add a marker to the map
-            new Marker({
-                position: center,
+            new AdvancedMarkerElement({
                 map,
-                title: "Marker Position",
+                position: center,
+                title: "Center Position",
             });
 
             // Create a polyline path
@@ -78,4 +85,4 @@ const FlightPathMap: React.FC = () => {
     return <div ref={mapRef} style={{ width: "100%", height: "100%" }} />;
 };
 
-export default FlightPathMap;
+export default Map;
