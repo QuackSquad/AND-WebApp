@@ -128,27 +128,34 @@ body {
 }
 
 /* Device */
-.left-box {
+.device-left-box {
     max-width: 500px;
     width: 100%;
     flex-direction: column;
 }
 
-.right-box {
+.device-right-box {
     width: 100%;
 }
 
-@media (min-width: 992px) {
-    .left-box {
+@media (min-width: 1000px) {
+    .device-left-box {
         width: 450px;
         flex-shrink: 0;
     }
-    .right-box {
+    .device-right-box {
         flex-grow: 1;
     }
 }
 
-.left-box,
-.right-box {
+.device-left-box,
+.device-right-box {
     margin: 0 10px;
+}
+
+.device-map {
+    width: 100%;
+    border-radius: 5px;
+    border: #555 solid 1px;
+    padding: 5px;
 }

@@ -5,6 +5,7 @@ import {
     EventsTableProps,
 } from "../../components/DatabaseTableProps";
 import axios, { AxiosResponse } from "axios";
+import GoogleMaps from "../../components/GoogleMaps";
 
 function Overview() {
     const [devicesTable, setDeviceTable] = useState<string[][]>([]);
@@ -106,7 +107,7 @@ function Overview() {
     return (
         <div className="container">
             <div className="d-flex flex-column flex-lg-row align-items-center">
-                <div className="left-box d-flex justify-content-center align-items-center mb-3 mb-lg-0">
+                <div className="device-left-box d-flex justify-content-center align-items-center mb-3 mb-lg-0">
                     <ListCard
                         title="Devices"
                         listHeaders={["Name", "Status", "Updated", "Battery"]}
@@ -114,7 +115,7 @@ function Overview() {
                         width="-webkit-fill-available"
                         maxWidth="500px"
                     />
-                    <div style={{ height: "10px" }} />
+                    <div style={{ height: "0px" }} />
                     <ListCard
                         title="Events"
                         listHeaders={[
@@ -128,12 +129,11 @@ function Overview() {
                         maxWidth="500px"
                     />
                 </div>
-                <div className="right-box d-flex align-items-begin">
-                    <img
-                        src="/512image.jpg"
-                        alt="image"
-                        style={{ width: "100%" }}
-                    />
+                <div
+                    className="device-right-box d-flex align-items-begin device-map"
+                    style={{ width: "100%", aspectRatio: "1/1" }}
+                >
+                    <GoogleMaps />
                 </div>
             </div>
         </div>
