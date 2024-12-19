@@ -93,6 +93,7 @@ function Overview() {
         setEventTable(table);
     };
 
+    // Fetch device and event data from the API
     useEffect(() => {
         const fetchData = async () => {
             const devices = await getDevices();
@@ -107,6 +108,7 @@ function Overview() {
     return (
         <div className="container">
             <div className="d-flex flex-column flex-lg-row align-items-center">
+                {/* Device and Event List */}
                 <div className="device-left-box d-flex justify-content-center align-items-center mb-3 mb-lg-0">
                     <ListCard
                         title="Devices"
@@ -129,6 +131,7 @@ function Overview() {
                         maxWidth="500px"
                     />
                 </div>
+                {/* Google Maps */}
                 <div
                     className="device-right-box d-flex align-items-begin device-map"
                     style={{ width: "100%", aspectRatio: "1/1" }}
