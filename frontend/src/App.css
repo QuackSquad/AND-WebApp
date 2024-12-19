@@ -90,7 +90,7 @@ body {
 
 .list-card-table {
     margin: 0px;
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px;
 }
 
 .list-card-table thead {
@@ -155,7 +155,8 @@ body {
 
 .device-map {
     width: 100%;
-    border-radius: 5px;
-    border: #555 solid 1px;
+    border-radius: var(--bs-border-radius);
+    border: var(--bs-border-color-translucent) solid var(--bs-border-width);
     padding: 5px;
+    background-color: var(--bs-body-bg);
 }
